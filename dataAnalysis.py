@@ -99,7 +99,7 @@ class MulReg():
 
         plt.show()
 
-    def get_reg(self): # Returns Coefficients
+    def get_coeffs(self): # Returns Coefficients
         x1 = self.x1
         x2 = self.x2
         y  = self.y
@@ -137,3 +137,29 @@ class MulReg():
         b0 = ybar - (b1*x1bar) - (b2*x2bar)
         return b0, b1, b2
 
+    def get_reg(self):
+        x1 = np.linspace(0, max(self.x1), num=len(self.x1))
+        x2 = np.linspace(0, max(self.x2), num=len(self.x2))
+        b0, b1, b2 = self.get_coeffs()
+        X1, X2 = np.meshgrid(x1, x2)
+        Z = (b1*X1 + b2*X2 + b0)
+        ax = plt.axes(projection='3d')
+        ax.plot_surface(X1, X2, Z, color='r')
+    
+    def get_comp(self):
+        ax = plt.axes(projection='3d')
+        x1 = np.linspace(0, max(self.x1), num=len(self.x1))
+        x2 = np.linspace(0, max(self.x2), num=len(self.x2))
+        b0, b1, b2 = self.get_coeffs()
+        X1, X2 = np.meshgrid(x1, x2)
+        Z = (b1*X1 + b2*X2 + b0)
+        ax.plot_surface(X1, X2, Z, color='r', alpha=0.8)
+        plt.title("Scatter vs Regression")
+
+        x1_arr = self.x1
+        x2_arr = self.x2
+        y  = self.y
+        ax.scatter(x1_arr, x2_arr, y, color="b")
+
+        
+        
