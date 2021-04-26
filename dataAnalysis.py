@@ -223,7 +223,7 @@ def Lagrange(x: list, y: list, x0: float):
             yp = yp + p * y[i]
         return yp
 
-    xp = np.linspace(0, max(x)+5)
+    xp = np.linspace(min(x)*1.2, max(x)*1.5)
     y_plot = __calc(xp)
     y0 = __calc(x0)
     plt.plot(xp, y_plot, label="Interpolated Line")
@@ -233,9 +233,6 @@ def Lagrange(x: list, y: list, x0: float):
     plt.legend()
     plt.xlabel("X Values")
     plt.ylabel("Y Values")
-
-    for i_x, i_y in zip(x, y):
-        plt.text(i_x, i_y, '({}, {})'.format(i_x, i_y))
 
     plt.text(x0, y0, f"({x0}, {y0:.2f})", fontweight='bold')
     print("At x0:", y0)
