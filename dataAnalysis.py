@@ -81,7 +81,7 @@ class MulReg():
         x1 = self.x1
         x2 = self.x2
         y  = self.y
-        fig = plt.figure(figsize=(12,10))
+        fig = plt.figure(figsize=(7,6))
         fig.suptitle("Scatterplots", fontsize=18)
 
         ax = fig.add_subplot(2,2,1, xlabel="X1", ylabel="X2", title="X1 and X2")
@@ -96,7 +96,12 @@ class MulReg():
 
         ax = fig.add_subplot(2,2,4, projection="3d", xlabel="X1", ylabel="X2", zlabel="Y", title="X1, X2 and Y")
         ax.scatter(x1,x2,y)
-
+        plt.subplots_adjust(left=0.1,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.4, 
+                    hspace=0.4)
         plt.show()
 
     def get_coeffs(self): # Returns Coefficients
